@@ -6,7 +6,7 @@ const FAQSection = () => {
       desc: "You can expect real-time responses! Our active community of learners and educators is always ready to help.",
     },
     {
-      head: "Can I answer other students' questions?",
+      head: "Can I help others?",
       desc: "Absolutely! You can both ask questions and help others by answering theirs.",
     },
     {

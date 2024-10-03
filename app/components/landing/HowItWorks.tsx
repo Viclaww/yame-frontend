@@ -31,6 +31,7 @@ const HowItWorks = () => {
     const scaleValues = [1, 0.8, 0.6];
     const yValues = [0, 30, 60];
     const zIndexValues = [3, 2, 1];
+    const opacityValues = [1, 1, 0];
 
     const updatePositions = (focusIndex: number) => {
       steps.forEach((_, i) => {
@@ -42,9 +43,11 @@ const HowItWorks = () => {
           scale: scaleValues[relativeIndex],
           y: yValues[relativeIndex],
           zIndex: zIndexValues[relativeIndex],
-          // opacity: opacityValues[relativeIndex],
-          duration: 0.5,
-          onComplete: () => {},
+          opacity: opacityValues[relativeIndex],
+          duration: 1.2,
+          onComplete: () => {
+            gsap.to(element, { opacity: 1 });
+          },
         });
       });
     };
@@ -65,7 +68,7 @@ const HowItWorks = () => {
 
           // Update positions of all elements
           updatePositions(nextFocus);
-          gsap.set(focusedElement, { y: 60, opacity: 1 });
+          // gsap.set(focusedElement, { y: 60, opacity: 1 });
         },
       });
     };
@@ -86,7 +89,7 @@ const HowItWorks = () => {
       <div className="flex flex-col gap-5 py-10 w-full items-center relative">
         {steps.map((step, index) => (
           <article
-            className="flex flex-col border shadow-md items-center justify-center text-center h-[150px] w-full md:w-2/3 p-5 rounded-md bg-white text-black absolute"
+            className="flex flex-col border shadow-md items-center justify-center text-center h-[150px] w-full md:w-2/3 p-5 rounded-3xl bg-white text-black absolute"
             key={index}
             ref={(el) => (carouselRef.current[index] = el)} // Attach refs to each element
           >

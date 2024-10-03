@@ -16,7 +16,7 @@ const FaqItem = ({
     <section
       onClick={() => setisOpen(!isOpen)}
       className={`flex cursor-pointer bg-white text-black flex-col border rounded-xl border-blueZ overflow-hidden  ease-in-out duration-500  px-5 ${
-        isOpen ? "h-[220px] md:h-[120px] bg-blueZ/30" : "h-[65px] "
+        isOpen ? "h-[150px] md:h-[120px] bg-blueZ/30" : "h-[65px] "
       }`}
       key={index}
     >

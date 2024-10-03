@@ -22,7 +22,7 @@ const WhyChooseUs = () => {
       <section className="flex flex-col flex-wrap items-center gap-10 justify-center md:flex-row">
         {reasons.map(({ image, heading, desc }) => (
           <article
-            className="flex flex-col md:w-1/3 w-full h-[250px] items-center bg-gradient1 p-5 rounded-md text-white"
+            className="flex flex-col md:w-1/4 w-full h-[250px] items-center bg-gradient1 p-5 rounded-md text-white"
             key={heading}
           >
             <img src={image} className="w-16 h-16" alt="" />
