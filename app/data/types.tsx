@@ -6,3 +6,9 @@ export type PostProps = {
   updatedAt: string;
   image?: string;
 };
+
+export type TUser = {
+  email: string;
+  id: number;
+  username: string;
+};

@@ -35,9 +35,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Home() {
   const data = useLoaderData<typeof loader>();
 
-  console.log(data);
   return (
-    <Layout>
+    <Layout user={data.user}>
       <div className="flex flex-col p-10 h-full w-full overflow-auto">
         {data &&
           data?.posts.map((post: PostProps) => (

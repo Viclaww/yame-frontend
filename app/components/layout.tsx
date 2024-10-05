@@ -6,8 +6,9 @@ import { FaPenNib } from "react-icons/fa";
 import { IoMdNotifications, IoMdNotificationsOutline } from "react-icons/io";
 import { Link, useLocation } from "@remix-run/react";
 import { PiPenNibLight } from "react-icons/pi";
+import { TUser } from "~/data/types";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children, user }: { children: ReactNode; user?: TUser }) => {
   const pathname = useLocation().pathname;
   const navItems = [
     {
@@ -19,7 +20,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <RiHome7Line size={25} color={color} fill={color} />
         ),
       name: "Home",
-      link: "/",
+      link: "/home",
     },
     {
       id: 2,
@@ -57,7 +58,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   ];
   return (
     <section className="flex flex-col px-20">
-      <DasHead />
+      <DasHead isUser={Boolean(user)} />
       <nav className=" flex shadow items-center gap-5 py-1 px-4 shadow-white bg-[#6D6D6D] left-1/3 md:absolute bottom-10 rounded-full">
         {navItems.map((item) => (
           <Link
@@ -91,29 +92,44 @@ const Layout = ({ children }: { children: ReactNode }) => {
         </section>
 
         {/* Trending  */}
-        <div className="bg-[#292727] w-1/3 p-5 gap-4 flex flex-col">
-          <h2 className="text-2xl font-semibold">Trending Topics</h2>
-          <div className="flex gap-4 flex-col">
+        <div className="flex w-1/3 flex-col">
+          <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
+            <h2 className="text-2xl font-semibold">Trending Topics</h2>
+            <div className="flex gap-4 flex-col">
+              <article>
+                <p className="text-xs font-semibold text-[#7851A9]">
+                  Trending Now - Maths
+                </p>
+                <h2 className="text-xl font-semibold">Calculus</h2>
+                <p className="text-xs  font-semibold text-[#4E4E4E]">
+                  180 post
+                </p>
+              </article>
+              <article>
+                <p className="text-xs font-semibold text-[#7851A9]">
+                  Trending Now - Maths
+                </p>
+                <h2 className="text-xl font-semibold">Calculus</h2>
+                <p className="text-xs  font-semibold text-[#4E4E4E]">
+                  180 post
+                </p>
+              </article>
+              <article>
+                <p className="text-xs font-semibold text-[#7851A9]">
+                  Trending Now - Maths
+                </p>
+                <h2 className="text-xl font-semibold">Calculus</h2>
+                <p className="text-xs  font-semibold text-[#4E4E4E]">
+                  180 post
+                </p>
+              </article>
+            </div>
+          </div>
+          <div>
+            <h2>Topics</h2>
             <article>
-              <p className="text-xs font-semibold text-[#7851A9]">
-                Trending Now - Maths
-              </p>
-              <h2 className="text-xl font-semibold">Calculus</h2>
-              <p className="text-xs  font-semibold text-[#4E4E4E]">180 post</p>
-            </article>
-            <article>
-              <p className="text-xs font-semibold text-[#7851A9]">
-                Trending Now - Maths
-              </p>
-              <h2 className="text-xl font-semibold">Calculus</h2>
-              <p className="text-xs  font-semibold text-[#4E4E4E]">180 post</p>
-            </article>
-            <article>
-              <p className="text-xs font-semibold text-[#7851A9]">
-                Trending Now - Maths
-              </p>
-              <h2 className="text-xl font-semibold">Calculus</h2>
-              <p className="text-xs  font-semibold text-[#4E4E4E]">180 post</p>
+              <p>Maths</p>
+              <button>Follow</button>
             </article>
           </div>
         </div>
