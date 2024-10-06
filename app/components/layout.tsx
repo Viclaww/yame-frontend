@@ -8,7 +8,13 @@ import { Link, useLocation } from "@remix-run/react";
 import { PiPenNibLight } from "react-icons/pi";
 import { TUser } from "~/data/types";
 
-const Layout = ({ children, user }: { children: ReactNode; user?: TUser }) => {
+const Layout = ({
+  children,
+  user,
+}: {
+  children: ReactNode;
+  user?: TUser | null;
+}) => {
   const pathname = useLocation().pathname;
   const navItems = [
     {

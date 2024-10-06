@@ -28,10 +28,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <script
+          src="https://upload-widget.cloudinary.com/latest/global/all.js"
+          type="text/javascript"
+        ></script>
+
         <Links />
       </head>
       <body>
         {children}
+
         <ScrollRestoration />
         <Scripts />
       </body>

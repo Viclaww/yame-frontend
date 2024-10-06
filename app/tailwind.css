@@ -15,6 +15,7 @@ body {
 /* Width of the scrollbar */
 ::-webkit-scrollbar {
   width: 1px;
+  display: none;
 }
 
 /* Track of the scrollbar */

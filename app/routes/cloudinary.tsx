@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-async-promise-executor */
 
 import cloudinary from "cloudinary";
 import { writeAsyncIterableToWritable } from "@remix-run/node";
 
 cloudinary.v2.config({
-  cloud_name: process.env.VITE_CLOUD_NAME,
-  api_key: process.env.VITE_API_KEY,
-  api_secret: process.env.VITE_API_SECRET,
+  cloud_name: import.meta.env.VITE_CLOUD_NAME,
+  api_key: import.meta.env.VITE_API_KEY,
+  api_secret: import.meta.env.VITE_API_SECRET,
 });
 
 async function uploadImage(data: AsyncIterable<Uint8Array>) {

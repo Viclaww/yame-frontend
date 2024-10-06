@@ -24,3 +24,14 @@ export function timeAgo(timestamp: string): string {
     return format(date, "MMM dd, yyyy");
   }
 }
+
+export const fileToAsyncIterable = async function* (
+  file: File
+): AsyncIterable<Uint8Array> {
+  const reader = file.stream().getReader();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    yield value;
+  }
+};

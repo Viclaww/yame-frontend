@@ -1,16 +1,27 @@
-// import { Link } from "@remix-run/react";
-import { json, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import Post from "~/components/Post";
-import { LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import { getPosts } from "~/data/Post";
-import { PostProps } from "~/data/types";
+import { PostProps, TUser } from "~/data/types";
 import Layout from "~/components/layout";
+import CreatePostComp from "~/data/CreatePost";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+type LoaderReturnValue = {
+  posts: PostProps[] | string | null;
+  user: TUser | null;
+};
+
+export const loader = async ({
+  request,
+}: LoaderFunctionArgs): Promise<LoaderReturnValue> => {
   const posts = await getPosts();
   const cookie = request.headers.get("Cookie");
+
   if (!cookie || !cookie.includes("yame-user")) {
-    return json({ posts, user: null });
+    if (!posts) {
+      return { posts: null, user: null };
+    }
+    return { posts, user: null };
   }
 
   let user = null;
@@ -22,14 +33,20 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }
   } catch (error) {
     console.error("Error parsing yame-user cookie:", error);
-    return redirect("/login"); // Redirect to login if parsing fails
+    // return redirect("/login"); // Redirect to login if parsing fails
+    if (!posts) {
+      return { posts: "Failed to get Posts. Try again", user: null };
+    }
   }
 
   // If user is null after parsing
   if (!user) {
-    return json({ posts, user: null });
+    return { posts, user: null };
   }
-  return json({ user, posts });
+  if (!posts) {
+    return { posts: "Failed to get Posts. Try again", user };
+  }
+  return { user, posts };
 };
 
 export default function Home() {
@@ -38,10 +55,15 @@ export default function Home() {
   return (
     <Layout user={data.user}>
       <div className="flex flex-col p-10 h-full w-full overflow-auto">
-        {data &&
-          data?.posts.map((post: PostProps) => (
+        <CreatePostComp />
+        {data && typeof data.posts == "string" ? (
+          <p>{data.posts}</p>
+        ) : (
+          Array.isArray(data?.posts) &&
+          data.posts.map((post: PostProps) => (
             <Post key={post.id + post.text} post={post} />
-          ))}
+          ))
+        )}
       </div>
     </Layout>
   );
