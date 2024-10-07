@@ -93,12 +93,12 @@ const Layout = ({
         </Link>
       </nav>
       <div className="flex gap-6">
-        <section className="bg-[#292727] overflow-auto h-[85vh] w-2/3 rounded-lg">
+        <section className="bg-[#292727] overflow-auto h-[85vh] w-fulls lg:w-2/3 rounded-lg">
           <div className="">{children}</div>
         </section>
 
         {/* Trending  */}
-        <div className="flex w-1/3 flex-col">
+        <div className="lg:flex w-1/3 hidden flex-col">
           <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Trending Topics</h2>
             <div className="flex gap-4 flex-col">
