@@ -6,6 +6,10 @@ import {
 } from "@remix-run/node";
 import { PassThrough } from "stream";
 
+export const loader = async () => {
+  // You can perform any necessary server-side logic here
+  return json({ message: "Upload route is working!" });
+};
 // Set up Cloudinary config
 cloudinary.config({
   cloud_name: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
@@ -33,7 +37,7 @@ export const action = async ({ request }: { request: Request }) => {
     // Create a new promise to handle the Cloudinary upload stream
     const uploadResult = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: "my_uploads" }, // Optional: set a folder in Cloudinary
+        { folder: "hackathon-pr" }, // Optional: set a folder in Cloudinary
         (error, result) => {
           if (result) {
             resolve(result);

@@ -10,6 +10,10 @@ import {
 import Loader from "~/components/Loader";
 import { register } from "~/data/userApi";
 
+export const loader = async () => {
+  // You can perform any necessary server-side logic here
+  return json({ message: "Upload route is working!" });
+};
 export const action: ActionFunction = async ({ request }) => {
   const formdata = await request.formData();
   const email = formdata.get("email") as string;

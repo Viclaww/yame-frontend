@@ -55,7 +55,7 @@ export default function Home() {
   return (
     <Layout user={data.user}>
       <div className="flex flex-col p-10 h-full w-full overflow-auto">
-        <CreatePostComp />
+        {data.user && <CreatePostComp user={data.user} />}
         {data && typeof data.posts == "string" ? (
           <p>{data.posts}</p>
         ) : (
