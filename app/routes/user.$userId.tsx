@@ -1,10 +1,18 @@
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useState } from "react";
 import Layout from "~/components/layout";
 import Post from "~/components/Post";
+import { getUser } from "~/data/userApi";
 
-// export const loader = async () => {
-
-// };
+export const loader = async ({ params }: LoaderFunctionArgs) => {
+  const id = params.userId;
+  if (id) {
+    const data = await getUser(parseInt(id));
+    console.log(data);
+    return json({ data });
+  }
+  return json({ message: "NO user found" });
+};
 
 export default function User() {
   const [tab, setTab] = useState("questions");

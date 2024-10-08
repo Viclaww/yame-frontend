@@ -56,14 +56,17 @@ export const register = async (
 };
 
 // Get user function
-export const getUser = async () => {
+export const getUser = async (id: number) => {
   try {
-    const response = await fetch("https://hackathon-pr.onrender.com/user", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://hackathon-pr.onrender.com/auth/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.error || "Signin failed");

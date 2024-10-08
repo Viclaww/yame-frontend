@@ -9,7 +9,10 @@ import { Link } from "@remix-run/react";
 
 export default function Post({ post }: { post: PostProps }) {
   return (
-    <article className="flex flex-col cursor-pointer border-b border-b-white py-4 gap-5">
+    <Link
+      to={`/post/${post.id}`}
+      className="flex flex-col cursor-pointer border-b border-b-white py-4 gap-5"
+    >
       <div className="flex gap-4">
         <Link to={`/user/12`} className="w-14 h-15 rounded-full">
           <img
@@ -45,6 +48,6 @@ export default function Post({ post }: { post: PostProps }) {
           <VscDeviceCamera size={25} />
         </span>
       </div>
-    </article>
+    </Link>
   );
 }
