@@ -7,6 +7,7 @@ import {
   useNavigation,
 } from "@remix-run/react";
 import Loader from "~/components/Loader";
+import { LoginWithGoogle } from "~/components/LoginGooglebtn";
 import { login } from "~/data/userApi";
 
 export const action: ActionFunction = async ({ request }) => {
@@ -28,7 +29,7 @@ export const action: ActionFunction = async ({ request }) => {
     }
 
     if (response?.data) {
-      const user = response.data.user;
+      const user = response.data;
       const headers = new Headers();
       headers.append(
         "Set-Cookie",
@@ -108,6 +109,7 @@ export default function Login() {
             alt=""
           />
         </div>
+        <LoginWithGoogle />
       </div>
     </section>
   );
