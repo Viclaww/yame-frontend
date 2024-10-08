@@ -24,3 +24,38 @@ export const getPosts = async () => {
     }
   }
 };
+export const createPost = async (body: unknown) => {
+  try {
+    console.log("body", body);
+    const response = await fetch(`https://hackathon-pr.onrender.com/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    console.log("response", response);
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Create post error response:", errorData);
+      return {
+        error: errorData.error || "Create post failed",
+      };
+    }
+
+    const data = await response.json();
+    console.log("Create post data:", data);
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError) {
+      // Network error or request was blocked
+      console.error("Create post error request:", error.message);
+      return { error: "No response from the server." };
+    } else {
+      // Something went wrong in setting up the request
+      const errorMessage = (error as Error).message;
+      console.error("Create post error message:", errorMessage);
+      return { error: "An unexpected error occurred." };
+    }
+  }
+};

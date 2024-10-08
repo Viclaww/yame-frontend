@@ -7,7 +7,13 @@ import {
   useNavigation,
 } from "@remix-run/react";
 import Loader from "~/components/Loader";
+import { LoginWithGoogle } from "~/components/LoginGooglebtn";
 import { login } from "~/data/userApi";
+
+export const loader = async () => {
+  // You can perform any necessary server-side logic here
+  return json({ message: "Upload route is working!" });
+};
 import type { MetaFunction } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   const formdata = await request.formData();
@@ -28,7 +34,7 @@ export const action: ActionFunction = async ({ request }) => {
     }
 
     if (response?.data) {
-      const user = response.data.user;
+      const user = response.data;
       const headers = new Headers();
       headers.append(
         "Set-Cookie",
@@ -115,6 +121,7 @@ export default function Login() {
             alt=""
           />
         </div>
+        <LoginWithGoogle />
       </div>
     </section>
   );
