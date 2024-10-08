@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { BiPlus, BiX } from "react-icons/bi";
 import { TUser } from "./types";
-import { createPost } from "./Post";
+// import { createPost } from "./Post";
 
 const CreatePostComp = ({ user }: { user: TUser }) => {
   const imageInputRef = useRef<HTMLInputElement | null>(null); // Ref for the image input
@@ -50,14 +50,24 @@ const CreatePostComp = ({ user }: { user: TUser }) => {
 
   const handlePost = async () => {
     const imageUrls = await uploadImages();
-    const post = {
-      text: postText,
-      media: imageUrls.map((url: string) => ({ src: url })), // Corrected 'scr' to 'src'
-      user_id: user.id,
-    };
+    const post = new FormData();
+    post.append("text", postText);
+    imageUrls.forEach((url: string, index: number) => {
+      post.append(`media[${index}][src]`, url);
+    });
+    post.append("user_id", user.id.toString());
 
     try {
-      const data = await createPost(post);
+      const response = await fetch("/create-post", {
+        method: "POST",
+        body: post,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create post.");
+      }
+
+      const data = await response.json();
       console.log("Post created:", data);
     } catch (error) {
       console.error("Error creating post:", error);
