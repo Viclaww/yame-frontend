@@ -8,7 +8,7 @@ import {
 } from "@remix-run/react";
 import Loader from "~/components/Loader";
 import { login } from "~/data/userApi";
-
+import type { MetaFunction } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   const formdata = await request.formData();
   const email = formdata.get("email") as string;
@@ -42,6 +42,13 @@ export const action: ActionFunction = async ({ request }) => {
     console.error("Registration failed", error);
     return json({ error: "Something went wrong. Please try again later." });
   }
+};
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login | Huddle" },
+    { name: "description", content: "Login to get ask and get answers" },
+  ];
 };
 
 export default function Login() {
