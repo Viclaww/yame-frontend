@@ -9,6 +9,14 @@ import {
 } from "@remix-run/react";
 import Loader from "~/components/Loader";
 import { register } from "~/data/userApi";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login | Huddle" },
+    { name: "description", content: "Login to get ask and get answers" },
+  ];
+};
 
 export const loader = async () => {
   // You can perform any necessary server-side logic here

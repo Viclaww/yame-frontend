@@ -1,10 +1,17 @@
 import { useLoaderData } from "@remix-run/react";
+import type { MetaFunction } from "@remix-run/node";
 import Post from "~/components/Post";
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { getPosts } from "~/data/Post";
 import { PostProps, TUser } from "~/data/types";
 import Layout from "~/components/layout";
 import CreatePostComp from "~/data/CreatePost";
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Posts | Huddle" },
+    { name: "description", content: "Ask and get answers" },
+  ];
+};
 
 type LoaderReturnValue = {
   posts: PostProps[] | string | null;
@@ -51,7 +58,6 @@ export const loader = async ({
 
 export default function Home() {
   const data = useLoaderData<typeof loader>();
-
   return (
     <Layout user={data.user}>
       <div className="flex flex-col p-10 h-full w-full overflow-auto">

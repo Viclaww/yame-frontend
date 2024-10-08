@@ -14,7 +14,7 @@ export const loader = async () => {
   // You can perform any necessary server-side logic here
   return json({ message: "Upload route is working!" });
 };
-
+import type { MetaFunction } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   const formdata = await request.formData();
   const email = formdata.get("email") as string;
@@ -48,6 +48,13 @@ export const action: ActionFunction = async ({ request }) => {
     console.error("Registration failed", error);
     return json({ error: "Something went wrong. Please try again later." });
   }
+};
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Login | Huddle" },
+    { name: "description", content: "Login to get ask and get answers" },
+  ];
 };
 
 export default function Login() {
