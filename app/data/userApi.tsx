@@ -2,7 +2,7 @@
 export const login = async (email: string, password: string) => {
   try {
     const response = await fetch(
-      "http://localhost:3000/auth/login",
+      "https://hackathon-pr.onrender.com/auth/login",
       {
         method: "POST",
         headers: {
@@ -33,7 +33,7 @@ export const register = async (
 ) => {
   try {
     const response = await fetch(
-      "http://localhost:3000/auth/register",
+      "https://hackathon-pr.onrender.com/auth/register",
       {
         method: "POST",
         headers: {

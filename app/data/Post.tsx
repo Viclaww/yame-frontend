@@ -5,7 +5,7 @@ export const getPosts = async () => {
   try {
     const { data } = await baseConfig.get("post");
     console.log("Get posts data:", data);
-    return data;
+    return data.toReversed();
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       // Server responded with a status other than 2xx
