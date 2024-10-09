@@ -31,7 +31,7 @@ export default function Post({ post }: { post: PostProps }) {
         </div>
       </div>
       <p>{post.text}</p>
-      <div className="flex gap-6 shadow backdrop-blur-sm shadow-white items-center bg-gradient-to-t w-fit p-3 rounded-full from-[#6D6D6D] to-[#070707]">
+      <div className="flex gap-6 shadow backdrop-blur-sm items-center bg-gradient-to-t w-fit p-3 rounded-full bg-[#070707]">
         <span className="flex items-center gap-1 cursor-pointer">
           <CiHeart size={25} /> 300
         </span>

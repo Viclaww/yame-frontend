@@ -3,7 +3,7 @@ import DasHead from "./DasHead";
 import { RiHome7Fill, RiHome7Line } from "react-icons/ri";
 import { BsPeople, BsPeopleFill } from "react-icons/bs";
 import { FaPenNib } from "react-icons/fa";
-import { IoMdNotifications, IoMdNotificationsOutline } from "react-icons/io";
+import { IoMdNotifications, IoMdNotificationsOutline,  IoIosSearch } from "react-icons/io";
 import { Link, useLocation } from "@remix-run/react";
 import { PiPenNibLight } from "react-icons/pi";
 import { TUser } from "~/data/types";
@@ -19,22 +19,22 @@ const Layout = ({
   const navItems = [
     {
       id: 1,
-      icon: (active: boolean, color?: string) =>
+      icon: (active: boolean,) =>
         active ? (
-          <RiHome7Fill size={25} fill={color} />
+          <RiHome7Fill size={25} color="white" />
         ) : (
-          <RiHome7Line size={25} color={color} fill={color} />
+          <RiHome7Line size={25} color={'white'} />
         ),
       name: "Home",
       link: "/home",
     },
     {
       id: 2,
-      icon: (active: boolean, color?: string) =>
+      icon: (active: boolean, ) =>
         active ? (
-          <BsPeopleFill size={25} fill={color} />
+          <BsPeopleFill size={25} color="white" />
         ) : (
-          <BsPeople size={25} color={color} fill={color} />
+          <BsPeople size={25} color={'white'}/>
         ),
       name: "People",
       link: "/people",
@@ -43,9 +43,9 @@ const Layout = ({
       id: 3,
       icon: (active: boolean, color?: string) =>
         active ? (
-          <FaPenNib size={25} color="" fill={color} />
+          <IoIosSearch size={25} color="white" fill={color} />
         ) : (
-          <PiPenNibLight size={25} color={color} fill={color} />
+          <IoIosSearch size={25} color={'white'}  />
         ),
       name: "Write",
       link: "/write",
@@ -54,25 +54,34 @@ const Layout = ({
       id: 4,
       icon: (active: boolean, color?: string) =>
         active ? (
-          <IoMdNotifications size={25} fill={color} />
+          <FaPenNib size={25} color="white" fill={color} />
         ) : (
-          <IoMdNotificationsOutline size={25} color={color} fill={color} />
+          <PiPenNibLight size={25} color={'white'}  />
+        ),
+      name: "Write",
+      link: "/write",
+    },
+    {
+      id: 5,
+      icon: (active: boolean,) =>
+        active ? (
+          <IoMdNotifications size={25} color="white" />
+        ) : (
+          <IoMdNotificationsOutline size={25} color={'white'} />
         ),
       name: "Notifications",
       link: "/notifications",
     },
   ];
   return (
-    <section className="flex flex-col px-20">
+    <section className="flex flex-col md:px-20 px-4">
       <DasHead isUser={Boolean(user)} />
-      <nav className=" flex shadow items-center gap-5 py-1 px-4 shadow-white bg-[#6D6D6D] left-1/3 md:absolute bottom-10 rounded-full">
+      <nav className=" flex z-50 items-center gap-5 py-1 px-4  bg-black md:left-1/3 absolute self-center bottom-5 md:bottom-10 rounded-full">
         {navItems.map((item) => (
           <Link
             key={item.id}
             to={item.link}
-            className={`flex items-center gap-2 p-3 text-white  rounded-full ${
-              pathname.includes(item.link) ? "bg-[#A89BB8]" : ""
-            }`}
+            className={`flex items-center gap-2 p-3 text-white  rounded-full`}
           >
             {pathname.includes(item.link)
               ? item.icon(pathname.includes(item.link), "#7851A9")
@@ -80,7 +89,7 @@ const Layout = ({
           </Link>
         ))}
         <Link
-          to={`/user/1`}
+          to={`/user/${user?.id}`}
           className={` w-12 h-12 p-[1px] rounded-full ${
             pathname.includes("user") ? "border-[2px] border-yame-purple" : ""
           }`}
@@ -93,12 +102,11 @@ const Layout = ({
         </Link>
       </nav>
       <div className="flex gap-6">
-        <section className="bg-[#292727] overflow-auto h-[85vh] w-fulls lg:w-2/3 rounded-lg">
+        <section className="bg-[#292727] overflow-auto h-[85vh] w-full lg:w-2/3 rounded-lg">
           <div className="">{children}</div>
         </section>
-
         {/* Trending  */}
-        <div className="lg:flex w-1/3 hidden flex-col">
+        <div className="lg:flex md:w-1/3 hidden flex-col">
           <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Trending Topics</h2>
             <div className="flex gap-4 flex-col">

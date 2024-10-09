@@ -9,13 +9,13 @@ export const getPosts = async () => {
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       // Server responded with a status other than 2xx
-      console.error("Login error response:", error.response.data);
+      console.error("Login error response:");
       return {
         data: { error: error.response.data.error || "Signin failed" },
       }; // Return the error response data
     } else if (isAxiosError(error) && error.request) {
       // No response was received from the server
-      console.error("Login error request:", error.request);
+      console.error("Login error request:", error);
       return { error: "No response from the server." };
     } else {
       // Something went wrong in setting up the request

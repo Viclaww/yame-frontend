@@ -45,7 +45,6 @@ export const loader = async ({
       return { posts: "Failed to get Posts. Try again", user: null };
     }
   }
-
   // If user is null after parsing
   if (!user) {
     return { posts, user: null };
@@ -60,7 +59,7 @@ export default function Home() {
   const data = useLoaderData<typeof loader>();
   return (
     <Layout user={data.user}>
-      <div className="flex flex-col p-10 h-full w-full overflow-auto">
+      <div className="flex flex-col px-4 md:p-10 h-full w-full overflow-auto">
         {data.user && <CreatePostComp user={data.user} />}
         {data && typeof data.posts == "string" ? (
           <p>{data.posts}</p>

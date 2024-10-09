@@ -3,30 +3,30 @@ import { useState } from "react";
 import { CgMenu } from "react-icons/cg";
 
 export default function DasHead({ isUser }: { isUser: boolean }) {
-  const [isOpened, setIsOpened] = useState(false);
+  // const [isOpened, setIsOpened] = useState(false);
   return (
-    <div className="flex flex-row justify-between relative z-30 p-6  w-full">
-      <h2 className="text-3xl cursor-pointer">Yame</h2>
-      <button
+    <div className="flex flex-row justify-between relative z-30 p-2 md:p-6 py-6  w-full">
+      <h2 className="text-lg md:text-3xl cursor-pointer">Huddle</h2>
+      {/* <button
         onClick={() => setIsOpened(!isOpened)}
         className="md:hidden"
         aria-label="Toggle menu"
       >
         <CgMenu size={30} />
-      </button>
+      </button> */}
       {isUser ? (
         <div className="flex gap-2 cursor-pointer">
           <div>
             <input
               type="text"
               placeholder="Search"
-              className="border border-white cursor-pointer py-1 flex justify-center w-[160px] rounded"
+              className="border px-2 border-white cursor-pointer py-1 flex justify-center w-fit md:w-[160px] rounded-lg"
             />
           </div>
 
           <Link
             to="/register"
-            className="bg-yame-purple cursor-pointer py-1 flex justify-center w-[160px] rounded"
+            className="bg-yame-purple cursor-pointer py-1 flex justify-center w-fit px-4 md:w-[160px] rounded-lg"
           >
             Take Test
           </Link>

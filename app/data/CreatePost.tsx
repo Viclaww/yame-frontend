@@ -6,12 +6,13 @@ import { TUser } from "./types";
 const CreatePostComp = ({
   user,
   isReply,
-  media,
+  // media,
 }: {
   user?: TUser;
   isReply?: boolean;
   media?: string[];
 }) => {
+  console.log(user);
   const imageInputRef = useRef<HTMLInputElement | null>(null); // Ref for the image input
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [postText, setPostText] = useState("");
@@ -85,7 +86,7 @@ const CreatePostComp = ({
   };
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col border-b border-[#5c5c5c] py-2">
       <textarea
         placeholder={isReply ? "Answer This question" : "Ask your Questions"}
         name="postText"
@@ -141,7 +142,7 @@ const CreatePostComp = ({
         </button>
         <button
           onClick={handlePost}
-          className="bg-purple-500 text-white flex w-fit px-4 py-1 rounded-full justify-self-end self-end"
+          className="bg-yame-purple text-white flex w-fit px-4 py-1 rounded-full justify-self-end self-end"
         >
           Post
         </button>

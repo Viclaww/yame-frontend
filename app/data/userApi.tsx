@@ -2,7 +2,7 @@
 export const login = async (email: string, password: string) => {
   try {
     const response = await fetch(
-      "https://hackathon-pr.onrender.com/auth/login",
+      "http://localhost:3000/auth/login",
       {
         method: "POST",
         headers: {
@@ -33,7 +33,7 @@ export const register = async (
 ) => {
   try {
     const response = await fetch(
-      "https://hackathon-pr.onrender.com/auth/register",
+      "http://localhost:3000/auth/register",
       {
         method: "POST",
         headers: {
@@ -43,6 +43,7 @@ export const register = async (
       }
     );
     const data = await response.json();
+    console.log(data);
     if (!response.ok) {
       throw new Error(data.error || "Registration failed");
     }
