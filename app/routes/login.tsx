@@ -7,7 +7,7 @@ import {
   useNavigation,
 } from "@remix-run/react";
 import Loader from "~/components/Loader";
-import { LoginWithGoogle } from "~/components/LoginGooglebtn";
+// import { LoginWithGoogle } from "~/components/LoginGooglebtn";
 import { login } from "~/data/userApi";
 
 export const loader = async () => {
@@ -121,7 +121,7 @@ export default function Login() {
             alt=""
           />
         </div>
-        <LoginWithGoogle />
+        {/* <LoginWithGoogle /> */}
       </div>
     </section>
   );
