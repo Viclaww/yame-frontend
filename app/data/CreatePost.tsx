@@ -1,18 +1,20 @@
 import { useState, useRef } from "react";
 import { BiPlus, BiX } from "react-icons/bi";
 import { TUser } from "./types";
+import Loader from "~/components/Loader";
 // import { createPost } from "./Post";
 
 const CreatePostComp = ({
   user,
   isReply,
-  // media,
-}: {
+}: // media,
+{
   user?: TUser;
   isReply?: boolean;
   media?: string[];
 }) => {
-  console.log(user);
+  // console.log(user);
+  const [isCreating, setIsCreating] = useState(false);
   const imageInputRef = useRef<HTMLInputElement | null>(null); // Ref for the image input
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [postText, setPostText] = useState("");
@@ -58,6 +60,10 @@ const CreatePostComp = ({
   };
 
   const handlePost = async () => {
+    if (!postText) {
+      return;
+    }
+    setIsCreating(true);
     const imageUrls = await uploadImages();
     const post = new FormData();
     post.append("text", postText);
@@ -78,15 +84,24 @@ const CreatePostComp = ({
         throw new Error("Failed to create post.");
       }
 
-      const data = await response.json();
-      console.log("Post created:", data);
+      await response.json();
+
+      setPostText("");
+      setSelectedImages([]);
     } catch (error) {
       console.error("Error creating post:", error);
+    } finally {
+      setIsCreating(false);
     }
   };
 
   return (
     <div className="w-full flex flex-col border-b border-[#5c5c5c] py-2">
+      {isCreating && (
+        <div className="absoute w-screen h-screen flex justify-center items-center bg-[#666]">
+          <Loader />
+        </div>
+      )}
       <textarea
         placeholder={isReply ? "Answer This question" : "Ask your Questions"}
         name="postText"

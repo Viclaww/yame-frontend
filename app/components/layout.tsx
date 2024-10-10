@@ -3,7 +3,11 @@ import DasHead from "./DasHead";
 import { RiHome7Fill, RiHome7Line } from "react-icons/ri";
 import { BsPeople, BsPeopleFill } from "react-icons/bs";
 import { FaPenNib } from "react-icons/fa";
-import { IoMdNotifications, IoMdNotificationsOutline,  IoIosSearch } from "react-icons/io";
+import {
+  IoMdNotifications,
+  IoMdNotificationsOutline,
+  IoIosSearch,
+} from "react-icons/io";
 import { Link, useLocation } from "@remix-run/react";
 import { PiPenNibLight } from "react-icons/pi";
 import { TUser } from "~/data/types";
@@ -19,22 +23,22 @@ const Layout = ({
   const navItems = [
     {
       id: 1,
-      icon: (active: boolean,) =>
+      icon: (active: boolean) =>
         active ? (
           <RiHome7Fill size={25} color="white" />
         ) : (
-          <RiHome7Line size={25} color={'white'} />
+          <RiHome7Line size={25} color={"white"} />
         ),
       name: "Home",
       link: "/home",
     },
     {
       id: 2,
-      icon: (active: boolean, ) =>
+      icon: (active: boolean) =>
         active ? (
           <BsPeopleFill size={25} color="white" />
         ) : (
-          <BsPeople size={25} color={'white'}/>
+          <BsPeople size={25} color={"white"} />
         ),
       name: "People",
       link: "/people",
@@ -45,7 +49,7 @@ const Layout = ({
         active ? (
           <IoIosSearch size={25} color="white" fill={color} />
         ) : (
-          <IoIosSearch size={25} color={'white'}  />
+          <IoIosSearch size={25} color={"white"} />
         ),
       name: "Write",
       link: "/write",
@@ -56,18 +60,18 @@ const Layout = ({
         active ? (
           <FaPenNib size={25} color="white" fill={color} />
         ) : (
-          <PiPenNibLight size={25} color={'white'}  />
+          <PiPenNibLight size={25} color={"white"} />
         ),
       name: "Write",
       link: "/write",
     },
     {
       id: 5,
-      icon: (active: boolean,) =>
+      icon: (active: boolean) =>
         active ? (
           <IoMdNotifications size={25} color="white" />
         ) : (
-          <IoMdNotificationsOutline size={25} color={'white'} />
+          <IoMdNotificationsOutline size={25} color={"white"} />
         ),
       name: "Notifications",
       link: "/notifications",

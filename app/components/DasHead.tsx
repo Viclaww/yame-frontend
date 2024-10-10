@@ -1,6 +1,4 @@
 import { Link } from "@remix-run/react";
-import { useState } from "react";
-import { CgMenu } from "react-icons/cg";
 
 export default function DasHead({ isUser }: { isUser: boolean }) {
   // const [isOpened, setIsOpened] = useState(false);
@@ -34,7 +32,8 @@ export default function DasHead({ isUser }: { isUser: boolean }) {
       ) : (
         <div
           className={`flex gap-2 flex-col md:flex-row md: duration-300 items-start md:bg-transparent bg-slate-600 absolute h-screen top-0 left-0 pt-10 pl-3 md:p-0 md:w-auto md:h-auto md:relative w-2/3 cursor-pointer ${
-            isOpened ? "translate-x-0" : "-translate-x-[150%] md:translate-x-0"
+            //  isOpened ? "translate-x-0" :
+            "-translate-x-[150%] md:translate-x-0"
           }`}
         >
           <Link
