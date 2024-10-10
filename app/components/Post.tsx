@@ -7,7 +7,16 @@ import { PostProps } from "~/data/types";
 import { timeAgo } from "~/data/utils";
 import { Link } from "@remix-run/react";
 
-export default function Post({ post }: { post: PostProps }) {
+export default function Post({
+  post,
+  isReply,
+  media,
+}: {
+  post: PostProps;
+  isReply?: boolean;
+  media?: { src: string }[];
+}) {
+  // console.log(post, media);
   return (
     <Link
       to={`/post/${post.id}`}
@@ -22,15 +31,33 @@ export default function Post({ post }: { post: PostProps }) {
           />
         </Link>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
           <span className="flex gap-3 items-center">
             <h2 className="text-xl font-medium ">Olivera</h2>
             <span className="text-[#7851A9]">@olivera</span>
+            {isReply && <p>is Replying</p>}
           </span>
           <p>Posted {timeAgo(post.createdAt)}</p>
         </div>
       </div>
       <p>{post.text}</p>
+      <div className="flex gap-5 overflow-auto w-full">
+        {media &&
+          media.map(({ src }, index) => (
+            <div
+              tabIndex={0}
+              role="button"
+              key={index}
+              className="flex rounded-xl overflow-hidden relative w-52 h-52 gap-4"
+            >
+              <img
+                src={src}
+                alt={src + index}
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          ))}
+      </div>
       <div className="flex gap-6 shadow backdrop-blur-sm items-center bg-gradient-to-t w-fit p-3 rounded-full bg-[#070707]">
         <span className="flex items-center gap-1 cursor-pointer">
           <CiHeart size={25} /> 300

@@ -3,7 +3,8 @@ import { json, useLoaderData } from "@remix-run/react";
 import Layout from "~/components/layout";
 import Post from "~/components/Post";
 import CreatePostComp from "~/data/CreatePost";
-import { getPostById } from "~/data/Post";
+import { getCommentByPostId, getPostById } from "~/data/Post";
+import { PostProps } from "~/data/types";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const id = params.postid;
@@ -11,8 +12,9 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     return json({ message: "youuu" });
   }
   const data = await getPostById(parseInt(id));
-  console.log(data);
-  return json({ data });
+  const comments = await getCommentByPostId(parseInt(id));
+  console.log(comments, "here");
+  return json({ data, comments });
 };
 
 export default function PostComp() {
@@ -26,12 +28,23 @@ export default function PostComp() {
       </Layout>
     );
   }
+  console.log(data.comments, "here");
 
   return (
     <Layout>
       <div className="flex gap-5 flex-col p-10 h-full w-full overflow-auto">
-        <Post post={data?.data.post} />
-        <CreatePostComp isReply={true} />
+        <Post post={data?.data.post} media={data?.data.media} />
+        {data?.comments &&
+          data.comments.length > 0 &&
+          data.comments.map((comment: PostProps) => (
+            <Post isReply={true} key={comment.text} post={comment} />
+          ))}
+        <CreatePostComp
+          isReply={{
+            user_id: data?.data.post.id,
+            post_id: data?.data.post.user_id,
+          }}
+        />
       </div>
     </Layout>
   );

@@ -1,3 +1,4 @@
+import { ActionFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/react";
 
 export const loader = async () => {
@@ -5,9 +6,8 @@ export const loader = async () => {
   return json({ message: "Upload route is working!" });
 };
 
-export const action = async ({ request }: { request: Request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
-
   // Parse media array from the form data
   const media = formData.getAll("media[]").map((mediaItem) => {
     if (typeof mediaItem === "string") {
@@ -21,9 +21,10 @@ export const action = async ({ request }: { request: Request }) => {
     text: formData.get("text") as string,
     media, // Parsed media array
     user_id: Number(formData.get("user_id")),
+    post_id: formData.get("post_id"),
   };
 
-  const response = await fetch(`https://hackathon-pr.onrender.com/post`, {
+  const response = await fetch("https://hackathon-pr.onrender.com/comments", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

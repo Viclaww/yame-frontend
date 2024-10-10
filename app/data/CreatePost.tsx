@@ -10,7 +10,7 @@ const CreatePostComp = ({
 }: // media,
 {
   user?: TUser;
-  isReply?: boolean;
+  isReply?: { post_id: number; user_id: number };
   media?: string[];
 }) => {
   // console.log(user);
@@ -67,15 +67,19 @@ const CreatePostComp = ({
     const imageUrls = await uploadImages();
     const post = new FormData();
     post.append("text", postText);
-    imageUrls.forEach((url: string, index: number) => {
-      post.append(`media[${index}][src]`, url);
+    imageUrls.forEach((url: string) => {
+      const img = { src: url, user_id: user?.id };
+      post.append(`media[]`, JSON.stringify(img));
     });
+    if (isReply) {
+      post.append("post_id", isReply?.post_id.toString());
+    }
     if (user?.id) {
       post.append("user_id", user.id.toString());
     }
-
+    const endpoint = isReply ? "/create-comment" : "/create-post";
     try {
-      const response = await fetch("/create-post", {
+      const response = await fetch(endpoint, {
         method: "POST",
         body: post,
       });
@@ -97,11 +101,6 @@ const CreatePostComp = ({
 
   return (
     <div className="w-full flex flex-col border-b border-[#5c5c5c] py-2">
-      {isCreating && (
-        <div className="absoute w-screen h-screen flex justify-center items-center bg-[#666]">
-          <Loader />
-        </div>
-      )}
       <textarea
         placeholder={isReply ? "Answer This question" : "Ask your Questions"}
         name="postText"
