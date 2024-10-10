@@ -1,8 +1,6 @@
 import { useState, useRef } from "react";
 import { BiPlus, BiX } from "react-icons/bi";
 import { TUser } from "./types";
-import Loader from "~/components/Loader";
-// import { createPost } from "./Post";
 
 const CreatePostComp = ({
   user,
@@ -14,7 +12,7 @@ const CreatePostComp = ({
   media?: string[];
 }) => {
   // console.log(user);
-  const [isCreating, setIsCreating] = useState(false);
+  // const [isCreating, setIsCreating] = useState(false);
   const imageInputRef = useRef<HTMLInputElement | null>(null); // Ref for the image input
   const [selectedImages, setSelectedImages] = useState<File[]>([]);
   const [postText, setPostText] = useState("");
@@ -63,7 +61,7 @@ const CreatePostComp = ({
     if (!postText) {
       return;
     }
-    setIsCreating(true);
+
     const imageUrls = await uploadImages();
     const post = new FormData();
     post.append("text", postText);
@@ -94,8 +92,6 @@ const CreatePostComp = ({
       setSelectedImages([]);
     } catch (error) {
       console.error("Error creating post:", error);
-    } finally {
-      setIsCreating(false);
     }
   };
 
