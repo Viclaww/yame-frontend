@@ -4,7 +4,7 @@ import baseConfig from "./apiConfig";
 export const getPosts = async () => {
   try {
     const { data } = await baseConfig.get("post");
-    console.log("Get posts data:", data);
+    // console.log("Get posts data:", data);
     return data.toReversed();
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -29,7 +29,7 @@ export const getPosts = async () => {
 export const getPostById = async (id: number) => {
   try {
     const { data } = await baseConfig.get(`post/${id}`);
-    console.log("Get post data:", data);
+    // console.log("Get post data:", data);
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -85,7 +85,7 @@ export const createPost = async (body: unknown) => {
       },
       body: JSON.stringify(body),
     });
-    console.log("response", response);
+    // console.log("response", response);
     if (!response.ok) {
       const errorData = await response.json();
       console.error("Create post error response:", errorData);
@@ -95,7 +95,7 @@ export const createPost = async (body: unknown) => {
     }
 
     const data = await response.json();
-    console.log("Create post data:", data);
+    // console.log("Create post data:", data);
     return data;
   } catch (error) {
     if (error instanceof TypeError) {

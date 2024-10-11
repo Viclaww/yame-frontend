@@ -68,23 +68,6 @@ export default function User() {
             Replies
           </span>
           <span
-            onClick={() => setTab("likes")}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                setTab("likes");
-              }
-            }}
-            className={`py-1  cursor-pointer  ${
-              tab === "likes"
-                ? "after:h-1 after:absolute relative after: after:bg-yame-purple after:w-10/12  after:bottom-0 after:left-1"
-                : ""
-            }`}
-            role="button"
-            tabIndex={0}
-          >
-            Likes
-          </span>
-          <span
             onClick={() => setTab("saved")}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {

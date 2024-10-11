@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "yame-purple": "#7851A9",
+        "yame-purple": "#0a1172",
       },
       backgroundImage: {
         lines: "url('/assets/lines.png')",
