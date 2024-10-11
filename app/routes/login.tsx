@@ -28,9 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     const response = await login(email, password);
     console.log(response, "response");
-    if (response.message) {
-      return json({ error: response.message });
-    }
+
     if (response?.data?.error) {
       return json({ error: response.data.error });
     }
