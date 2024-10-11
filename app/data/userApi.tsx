@@ -43,9 +43,9 @@ export const register = async (
       }
     );
     const data = await response.json();
-    console.log(data);
+    console.log(data, "data");
     if (!response.ok) {
-      throw new Error(data.error || "Registration failed");
+      throw new Error(data.message || "Registration failed");
     }
     return data;
   } catch (error) {

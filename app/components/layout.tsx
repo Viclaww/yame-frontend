@@ -110,7 +110,7 @@ const Layout = ({
           <div className="">{children}</div>
         </section>
         {/* Trending  */}
-        <div className="lg:flex md:w-1/3 hidden flex-col">
+        <div className="lg:flex md:w-1/3 hidden gap-2 flex-col">
           <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Trending Topics</h2>
             <div className="flex gap-4 flex-col">
@@ -143,11 +143,31 @@ const Layout = ({
               </article>
             </div>
           </div>
-          <div>
-            <h2>Topics</h2>
-            <article>
+          <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
+            <h2 className="text-2xl font-semibold">Topics</h2>
+            <article className="flex justify-between gap-4">
               <p>Maths</p>
-              <button>Follow</button>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
             </article>
           </div>
         </div>

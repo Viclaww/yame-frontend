@@ -41,7 +41,10 @@ export const action: ActionFunction = async ({ request }) => {
 
   try {
     const response = await register(email, username, password);
-
+    console.log(response, "j");
+    if (response.error) {
+      return json({ error: response.error });
+    }
     if (response?.data?.error) {
       return json({ error: response.data.error });
     }

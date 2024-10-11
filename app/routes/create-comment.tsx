@@ -24,13 +24,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     post_id: formData.get("post_id"),
   };
 
-  const response = await fetch("https://hackathon-pr.onrender.com/comments", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(postData),
-  });
+  const response = await fetch(
+    "https://hackathon-pr.onrender.com/comments/comment",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    }
+  );
 
   console.log("response", response);
 

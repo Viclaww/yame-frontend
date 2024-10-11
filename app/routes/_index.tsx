@@ -8,7 +8,10 @@ import WhyChooseUs from "~/components/landing/WhyChooseUs";
 export const meta: MetaFunction = () => {
   return [
     { title: "Huddle" },
-    { name: "description", content: "Welcome to Huddle, AI Powered Study Collaboration tool" },
+    {
+      name: "description",
+      content: "Welcome to Huddle, AI Powered Study Collaboration tool",
+    },
   ];
 };
 
