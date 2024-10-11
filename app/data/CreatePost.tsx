@@ -76,6 +76,7 @@ const CreatePostComp = ({
     if (user?.id) {
       post.append("user_id", user.id.toString());
     }
+
     const endpoint = isReply ? "/create-comment" : "/create-post";
     try {
       const response = await fetch(endpoint, {

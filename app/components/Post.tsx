@@ -18,7 +18,7 @@ export default function Post({
   isReply?: boolean;
   media?: { src: string }[];
 }) {
-  console.log(post, media);
+  // console.log(post, media);
   return (
     <Link
       to={`/post/${post.id}`}

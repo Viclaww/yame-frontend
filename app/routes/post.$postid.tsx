@@ -11,15 +11,45 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Ask and get answers" },
   ];
 };
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const id = params.postid;
   if (!id) {
     return json({ message: "youuu" });
   }
   const data = await getPostById(parseInt(id));
   const comments = await getCommentByPostId(parseInt(id));
+  const cookie = request.headers.get("Cookie");
+
+  if (!cookie || !cookie.includes("yame-user")) {
+    if (!data) {
+      return { data: null, user: null, comments: null };
+    }
+    return { data, user: null, comments };
+  }
+  let user;
+  try {
+    // Extract the yame-user cookie value and parse it
+    const userCookie = cookie.split("yame-user=")[1]?.split(";")[0]; // Handle multiple cookies
+    if (userCookie) {
+      user = JSON.parse(decodeURIComponent(userCookie)); // Decode the cookie and parse JSON
+    }
+  } catch (error) {
+    console.error("Error parsing yame-user cookie:", error);
+    // return redirect("/login"); // Redirect to login if parsing fails
+    if (!data) {
+      return {
+        message: "Failed to get Posts. Try again",
+        user: null,
+        comments,
+      };
+    }
+  }
+  if (!user) {
+    return { data, user: null, comments };
+  }
+
   console.log(comments, "here");
-  return json({ data, comments });
+  return json({ data, user, comments });
 };
 
 export default function PostComp() {
@@ -54,6 +84,7 @@ export default function PostComp() {
             />
           ))}
         <CreatePostComp
+          user={data?.user}
           isReply={{
             user_id: data?.data.post.id,
             post_id: data?.data.post.user_id,

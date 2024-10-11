@@ -19,9 +19,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   // Prepare the post data for the backend
   const postData = {
     text: formData.get("text") as string,
-    media, // Parsed media array
+    media, // Parsed media arrayss
     user_id: Number(formData.get("user_id")),
-    post_id: formData.get("post_id"),
+    post_id: Number(formData.get("post_id")),
   };
 
   const response = await fetch("https://hackathon-pr.onrender.com/comment", {
@@ -32,7 +32,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     body: JSON.stringify(postData),
   });
 
-  console.log("response", await response.json());
+  console.log("response", postData, await response.json());
 
   return json({ message: "Post created successfully!" });
 };
