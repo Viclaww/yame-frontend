@@ -32,7 +32,6 @@ export default function Post({
             alt=""
           />
         </Link>
-
         <div className="flex flex-col">
           <span className="flex gap-3 items-center">
             <h2 className="text-xl font-medium ">
@@ -45,20 +44,25 @@ export default function Post({
         </div>
       </div>
       <p>{post.text}</p>
-      <div className="flex gap-5 overflow-auto w-full">
+      <div className="grid overflow-hidden  grid-cols-1 rounded-xl mx-auto sm:grid-cols-2 gap-1 md:w-1/2  w-full">
         {media &&
-          media.map(({ src }, index) => (
+          media.slice(0, 4).map(({ src }, index) => (
             <div
-              tabIndex={0}
-              role="button"
               key={index}
-              className="flex rounded-xl overflow-hidden relative bg-gray-600 w-52 h-52 gap-4"
+              className={`relative ${
+                media.length === 1 ? "col-span-2 row-span-2" : ""
+              } ${media.length === 3 && index === 0 ? "col-span-2" : ""}`}
             >
               <img
                 src={src}
-                alt={src + index}
+                alt={`media-${index}`}
                 className="w-full h-full object-cover object-center"
               />
+              {index === 3 && media.length > 4 && (
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-2xl font-bold">
+                  +{media.length - 4}
+                </div>
+              )}
             </div>
           ))}
       </div>
