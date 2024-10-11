@@ -72,7 +72,7 @@ export default function Register() {
   const data = useActionData<typeof action>();
   const navigation = useNavigation();
   return (
-    <section className="bg-brain text-black w-screen h-screen justify-center items-center flex bg-50% bg-no-repeat bg-center">
+    <section className="bg-brain bg-cover text-black w-screen h-screen justify-center items-center flex bg-no-repeat bg-center">
       <div className="flex md:p-0 p-8 md:w-4/6 rounded-2xl items-center overflow-hidden bg-white md:h-5/6 ">
         <Form
           method="post"
@@ -123,9 +123,16 @@ export default function Register() {
               "Create Account"
             )}
           </button>
-          {data && data.error && (
-            <p className="text-xs text-red-400">{data.error}</p>
-          )}
+
+          {data && data?.error ? (
+            data.error.password ? (
+              <p className="text-xs text-red-400">{data.error.password}</p>
+            ) : data.error.email ? (
+              <p className="text-xs text-red-400">{data.error.email}</p>
+            ) : (
+              <p className="text-xs text-red-400">{data.error}</p>
+            )
+          ) : null}
           <p>
             Already have an account?{" "}
             <Link className="text-yame-purple" to="/login">
