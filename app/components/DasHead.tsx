@@ -3,8 +3,8 @@ import { Link } from "@remix-run/react";
 export default function DasHead({ isUser }: { isUser: boolean }) {
   // const [isOpened, setIsOpened] = useState(false);
   return (
-    <div className="flex flex-row justify-between relative z-30 p-2 md:p-6 py-6  w-full">
-      <h2 className="text-lg md:text-3xl cursor-pointer">Huddle</h2>
+    <div className="flex flex-row justify-between relative z-30 p-2 md:p-6 py-4  w-full">
+      <h2 className="text-lg md:text-3xl cursor-pointer text-yame-purple dark:text-white">huddle.</h2>
       {/* <button
         onClick={() => setIsOpened(!isOpened)}
         className="md:hidden"
@@ -23,8 +23,8 @@ export default function DasHead({ isUser }: { isUser: boolean }) {
           </div>
 
           <Link
-            to="/register"
-            className="bg-yame-purple cursor-pointer py-1 flex justify-center w-fit px-4 md:w-[160px] rounded-lg"
+            to="/test"
+            className="bg-yame-purple text-white cursor-pointer py-1 flex justify-center w-fit px-4 md:w-[160px] rounded-lg"
           >
             Take Test
           </Link>
@@ -38,13 +38,13 @@ export default function DasHead({ isUser }: { isUser: boolean }) {
         >
           <Link
             to="/login"
-            className="md:border border-white cursor-pointer py-1 flex md:justify-center w-[160px] rounded"
+            className="md:border border-yame-purple dark:border-white cursor-pointer py-2 flex md:justify-center w-[160px] rounded-xl"
           >
             Log In
           </Link>
           <Link
             to="/register"
-            className="md:bg-yame-purple cursor-pointer py-1 flex md:justify-center w-[160px] rounded"
+            className="md:bg-yame-purple cursor-pointer py-2 px-2 flex md:justify-center w-[160px] rounded-xl text-white"
           >
             Create Account
           </Link>

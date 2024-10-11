@@ -12,12 +12,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Ask and get answers" },
   ];
 };
-
 type LoaderReturnValue = {
   posts: PostProps[] | string | null;
   user: TUser | null;
 };
-
 export const loader = async ({
   request,
 }: LoaderFunctionArgs): Promise<LoaderReturnValue> => {
@@ -54,7 +52,6 @@ export const loader = async ({
   }
   return { user, posts };
 };
-
 export default function Home() {
   const data = useLoaderData<typeof loader>();
   return (
