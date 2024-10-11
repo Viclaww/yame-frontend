@@ -38,11 +38,20 @@ export default function PostComp() {
   return (
     <Layout>
       <div className="flex gap-5 flex-col p-10 h-full w-full overflow-auto">
-        <Post post={data?.data.post} media={data?.data.media} />
+        <Post
+          user={data?.data.user}
+          post={data?.data.post}
+          media={data?.data.media}
+        />
         {data?.comments &&
           data.comments.length > 0 &&
           data.comments.map((comment: PostProps) => (
-            <Post isReply={true} key={comment.text} post={comment} />
+            <Post
+              user={comment.user}
+              isReply={true}
+              key={comment.text}
+              post={comment}
+            />
           ))}
         <CreatePostComp
           isReply={{

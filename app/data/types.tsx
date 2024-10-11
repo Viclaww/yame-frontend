@@ -5,9 +5,12 @@ export type PostProps = {
   createdAt: string;
   updatedAt: string;
   image?: string;
-  // user: {
-  //   username: string;
-  // }
+  media?: { src: string }[];
+  user: {
+    username: string;
+    id: number;
+    email: string;
+  };
 };
 
 export type TUser = {

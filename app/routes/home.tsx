@@ -63,7 +63,12 @@ export default function Home() {
         ) : (
           Array.isArray(data?.posts) &&
           data.posts.map((post: PostProps) => (
-            <Post key={post.id + post.text} post={post} />
+            <Post
+              user={post.user}
+              key={post.id + post.text}
+              media={post.media}
+              post={post}
+            />
           ))
         )}
       </div>

@@ -111,7 +111,7 @@ const Layout = ({
           <div className="">{children}</div>
         </section>
         {/* Trending  */}
-        <div className="lg:flex md:w-1/3 hidden flex-col">
+        <div className="lg:flex md:w-1/3 hidden gap-3 flex-col">
           <div className="dark:bg-transparent dark:border-1 border border-yame-purple rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Trending Topics</h2>
             <div className="flex gap-4 flex-col">
@@ -144,7 +144,7 @@ const Layout = ({
               </article>
             </div>
           </div>
-          <div className="bg-[#292727] rounded-xl  p-5 gap-4 flex flex-col">
+          <div className="border-yame-purple border rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Topics</h2>
             <article className="flex justify-between gap-4">
               <p>Maths</p>

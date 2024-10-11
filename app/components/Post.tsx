@@ -3,20 +3,22 @@
 // import { FcAssistant } from "react-icons/fc";
 import { VscDeviceCamera } from "react-icons/vsc";
 import { TbMessageDots } from "react-icons/tb";
-import { PostProps } from "~/data/types";
+import { PostProps, TUser } from "~/data/types";
 import { timeAgo } from "~/data/utils";
 import { Link } from "@remix-run/react";
 
 export default function Post({
   post,
+  user,
   isReply,
   media,
 }: {
   post: PostProps;
+  user: TUser;
   isReply?: boolean;
   media?: { src: string }[];
 }) {
-  // console.log(post, media);
+  console.log(post, media);
   return (
     <Link
       to={`/post/${post.id}`}
@@ -33,8 +35,10 @@ export default function Post({
 
         <div className="flex flex-col">
           <span className="flex gap-3 items-center">
-            <h2 className="text-xl font-medium ">Olivera</h2>
-            <span className="text-blue-600">@olivera</span>
+            <h2 className="text-xl font-medium ">
+              {user ? user.username : "Ai"}
+            </h2>
+            {/* <span className="text-blue-600">@olivera</span> */}
             {isReply && <p>is Replying</p>}
           </span>
           <p>Posted {timeAgo(post.createdAt)}</p>
@@ -58,13 +62,19 @@ export default function Post({
             </div>
           ))}
       </div>
-      
+
       <div className="flex gap-6 shadow  backdrop-blur-md items-center bg-gradient-to-t w-fit p-3 rounded-full dark:bg-yame-purple">
         <span className="flex items-center gap-2 cursor-pointer">
-          <TbMessageDots className="dark:text-white text-yame-purple" size={25} />
+          <TbMessageDots
+            className="dark:text-white text-yame-purple"
+            size={25}
+          />
         </span>
         <span className="flex items-center gap-2 cursor-pointer">
-          <VscDeviceCamera  className="dark:text-white text-yame-purple" size={25} />
+          <VscDeviceCamera
+            className="dark:text-white text-yame-purple"
+            size={25}
+          />
         </span>
       </div>
     </Link>
