@@ -1,11 +1,16 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { json, useLoaderData } from "@remix-run/react";
+import { json, useLoaderData, MetaFunction } from "@remix-run/react";
 import Layout from "~/components/layout";
 import Post from "~/components/Post";
 import CreatePostComp from "~/data/CreatePost";
 import { getCommentByPostId, getPostById } from "~/data/Post";
 import { PostProps } from "~/data/types";
-
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Post | Huddle" },
+    { name: "description", content: "Ask and get answers" },
+  ];
+};
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const id = params.postid;
   if (!id) {

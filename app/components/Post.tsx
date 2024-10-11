@@ -1,6 +1,6 @@
-import { CiHeart } from "react-icons/ci";
-import { IoIosBookmarks } from "react-icons/io";
-import { FcAssistant } from "react-icons/fc";
+// import { CiHeart } from "react-icons/ci";
+// import { IoIosBookmarks } from "react-icons/io";
+// import { FcAssistant } from "react-icons/fc";
 import { VscDeviceCamera } from "react-icons/vsc";
 import { TbMessageDots } from "react-icons/tb";
 import { PostProps } from "~/data/types";
@@ -20,7 +20,7 @@ export default function Post({
   return (
     <Link
       to={`/post/${post.id}`}
-      className="flex flex-col cursor-pointer border-b border-b-white py-4 gap-5"
+      className="dark:bg-transparent bg-white flex flex-col cursor-pointer border-b border-b-yame-purple dark:border-b-white py-4 gap-5"
     >
       <div className="flex gap-4">
         <Link to={`/user/12`} className="w-14 h-15 rounded-full">
@@ -34,7 +34,7 @@ export default function Post({
         <div className="flex flex-col">
           <span className="flex gap-3 items-center">
             <h2 className="text-xl font-medium ">Olivera</h2>
-            <span className="text-[#7851A9]">@olivera</span>
+            <span className="text-blue-600">@olivera</span>
             {isReply && <p>is Replying</p>}
           </span>
           <p>Posted {timeAgo(post.createdAt)}</p>
@@ -48,7 +48,7 @@ export default function Post({
               tabIndex={0}
               role="button"
               key={index}
-              className="flex rounded-xl overflow-hidden relative w-52 h-52 gap-4"
+              className="flex rounded-xl overflow-hidden relative bg-gray-600 w-52 h-52 gap-4"
             >
               <img
                 src={src}
@@ -58,21 +58,13 @@ export default function Post({
             </div>
           ))}
       </div>
-      <div className="flex gap-6 shadow backdrop-blur-sm items-center bg-gradient-to-t w-fit p-3 rounded-full bg-[#070707]">
-        <span className="flex items-center gap-1 cursor-pointer">
-          <CiHeart size={25} /> 300
-        </span>
-        <span className="flex items-center gap-1 cursor-pointer">
-          <IoIosBookmarks size={25} /> 300
+      
+      <div className="flex gap-6 shadow  backdrop-blur-md items-center bg-gradient-to-t w-fit p-3 rounded-full dark:bg-yame-purple">
+        <span className="flex items-center gap-2 cursor-pointer">
+          <TbMessageDots className="dark:text-white text-yame-purple" size={25} />
         </span>
         <span className="flex items-center gap-2 cursor-pointer">
-          <TbMessageDots size={25} />
-        </span>
-        <span className="flex items-center gap-2 cursor-pointer">
-          <FcAssistant size={25} />
-        </span>
-        <span className="flex items-center gap-2 cursor-pointer">
-          <VscDeviceCamera size={25} />
+          <VscDeviceCamera  className="dark:text-white text-yame-purple" size={25} />
         </span>
       </div>
     </Link>

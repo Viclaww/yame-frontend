@@ -61,7 +61,6 @@ const CreatePostComp = ({
     if (!postText) {
       return;
     }
-
     const imageUrls = await uploadImages();
     const post = new FormData();
     post.append("text", postText);
@@ -103,7 +102,7 @@ const CreatePostComp = ({
         value={postText}
         onChange={(e) => setPostText(e.target.value)}
         rows={1}
-        className="bg-transparent py-2 resize-none outline-none"
+        className="bg-transparent py-5 resize-none outline-none"
       ></textarea>
       <input
         type="file"
@@ -146,13 +145,13 @@ const CreatePostComp = ({
               imageInputRef.current.click();
             }
           }}
-          className="text-white items-center text-xs flex w-fit px-4 py-1 rounded-full justify-self-end self-start"
+          className="text-white border-yame-purple border items-center text-xs flex w-fit px-2 py-2 rounded-full justify-self-end self-start"
         >
-          <BiPlus size={20} />
+          <BiPlus className="dark:text-white text-yame-purple" size={20} />
         </button>
         <button
           onClick={handlePost}
-          className="bg-yame-purple text-white flex w-fit px-4 py-1 rounded-full justify-self-end self-end"
+          className="bg-yame-purple text-white flex w-fit px-4 py-2 rounded-full justify-self-end self-end"
         >
           Post
         </button>
