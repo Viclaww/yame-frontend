@@ -19,7 +19,6 @@ export const action: ActionFunction = async ({ request }) => {
   const formdata = await request.formData();
   const email = formdata.get("email") as string;
   const password = formdata.get("password") as string;
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(email)) {
@@ -28,6 +27,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   try {
     const response = await login(email, password);
+    console.log(response, "response");
 
     if (response?.data?.error) {
       return json({ error: response.data.error });

@@ -17,22 +17,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   });
 
   // Prepare the post data for the backend
-  const postData = {
-    text: formData.get("text") as string,
-    media, // Parsed media array
-    user_id: Number(formData.get("user_id")),
-    post_id: formData.get("post_id"),
-  };
 
-  const response = await fetch("https://hackathon-pr.onrender.com/comments", {
+  const postData = new FormData();
+
+  postData.append("text", formData.get("text") as string);
+  postData.append("media", JSON.stringify(media) as string);
+  postData.append("user_id", formData.get("user_id") as string);
+  postData.append("post_id", formData.get("post_id") as string);
+
+  const response = await fetch("https://hackathon-pr.onrender.com/comment", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(postData),
+    body: postData,
   });
 
-  console.log("response", response);
+  console.log("response", postData, await response.json());
 
   return json({ message: "Post created successfully!" });
 };

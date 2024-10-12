@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="flex flex-col relative justify-center w-full">
       <div className="flex flex-row justify-between relative z-30 p-6  w-full">
-        <h2 className="text-3xl cursor-pointer">Yame</h2>
+        <h2 className="text-3xl cursor-pointer">huddle.</h2>
         <button
           onClick={() => setIsOpened(!isOpened)}
           className="md:hidden"
@@ -50,12 +50,18 @@ const Hero = () => {
             and experts!
           </p>
           <div className="flex gap-2 flex-row-reverse">
-            <button className="border cursor-pointer border-white py-1 w-[150px] rounded">
+            <Link
+              to={"/login"}
+              className="border cursor-pointer border-white py-1 w-[150px] rounded"
+            >
               Post a Question
-            </button>
-            <button className=" bg-yame-purple cursor-pointer py-1 w-[150px] rounded">
+            </Link>
+            <Link
+              to={"/register"}
+              className=" bg-yame-purple cursor-pointer py-1 w-[150px] rounded"
+            >
               Join Community
-            </button>
+            </Link>
           </div>
         </div>
       </section>

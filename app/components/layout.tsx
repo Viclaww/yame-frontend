@@ -26,7 +26,7 @@ const Layout = ({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       icon: (active: boolean, fill?: string) =>
         active ? (
-          <RiHome7Fill size={25} className="dark:text-white text-yame-purple"/>
+          <RiHome7Fill size={25} className="dark:text-white text-yame-purple" />
         ) : (
           <RiHome7Line size={25} className="dark:text-white text-yame-purple" />
         ),
@@ -111,7 +111,7 @@ const Layout = ({
           <div className="">{children}</div>
         </section>
         {/* Trending  */}
-        <div className="lg:flex md:w-1/3 hidden flex-col">
+        <div className="lg:flex md:w-1/3 hidden gap-3 flex-col">
           <div className="dark:bg-transparent dark:border-1 border border-yame-purple rounded-xl  p-5 gap-4 flex flex-col">
             <h2 className="text-2xl font-semibold">Trending Topics</h2>
             <div className="flex gap-4 flex-col">
@@ -143,6 +143,33 @@ const Layout = ({
                 </p>
               </article>
             </div>
+          </div>
+          <div className="border-yame-purple border rounded-xl  p-5 gap-4 flex flex-col">
+            <h2 className="text-2xl font-semibold">Topics</h2>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
+            <article className="flex justify-between gap-4">
+              <p>Maths</p>
+              <button className="py-1 px-3 rounded-full  bg-yame-purple">
+                Follow
+              </button>
+            </article>
           </div>
         </div>
       </div>
