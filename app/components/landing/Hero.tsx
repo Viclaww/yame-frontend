@@ -4,7 +4,7 @@ import { CgMenu } from "react-icons/cg";
 
 const Hero = () => {
   const [isOpened, setIsOpened] = useState(false);
-  console.log("Hero", isOpened);
+
   return (
     <div className="flex flex-col relative justify-center w-full">
       <div className="flex flex-row justify-between relative z-30 p-6  w-full">
